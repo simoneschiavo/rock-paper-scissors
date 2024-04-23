@@ -21,6 +21,9 @@ function getHumanChoice() {
     return humanChoice.toLowerCase();
 }
 
+// Track Score
+let computerScore = 0;
+let humanScore = 0;
 
 console.log(getComputerChoice());
 // getHumanChoice();
