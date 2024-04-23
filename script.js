@@ -25,5 +25,31 @@ function getHumanChoice() {
 let computerScore = 0;
 let humanScore = 0;
 
-console.log(getComputerChoice());
-// getHumanChoice();
+// Play one round
+function playRound(humanChoice, computerChoice) {
+    if (humanChoice === computerChoice) {
+        console.log(`No winners, you both selected ${humanChoice}`);
+        return;
+    }
+
+    if (
+        (humanChoice === 'rock' && computerChoice === 'scissors') ||
+        (humanChoice === 'paper' && computerChoice === 'rock') ||
+        (humanChoice === 'scissors' && computerChoice === 'paper')
+    ) {
+        console.log(`You win! ${humanChoice} beats ${computerChoice}!`);
+        humanScore++;
+        return;
+    }
+
+    console.log(`You lost! ${humanChoice} loses against ${computerChoice}!`);
+    computerScore++;
+    return;
+}
+
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+
+playRound(humanSelection, computerSelection);
+console.log(humanScore);
+console.log(computerScore);
