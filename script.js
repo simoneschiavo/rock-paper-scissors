@@ -1,13 +1,20 @@
 // Get the computer choice
 function getComputerChoice() {
     let randomNum = Math.floor(Math.random() * 3);
+    let computerChoice;
+
     if (randomNum === 0) {
-        return 'Rock';
+        computerChoice = 'rock';
     } else if (randomNum === 1) {
-        return 'Paper';
+        computerChoice = 'paper';
     } else {
-        return 'Scissors';
+        computerChoice = 'scissors';
     };
-}
+
+    return computerChoice;
+};
+
+// Get the human choice
+
 
 console.log(getComputerChoice());
