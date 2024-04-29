@@ -48,23 +48,23 @@ function playRound(humanChoice, computerChoice) {
 }
 
 // Play a game of n rounds
-function playGame(rounds = 5) {
-    for (i = 0; i <= (rounds -1); i++) {
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
+// function playGame(rounds = 5) {
+//     for (i = 0; i <= (rounds -1); i++) {
+//         const humanSelection = getHumanChoice();
+//         const computerSelection = getComputerChoice();
 
-        playRound(humanSelection, computerSelection);
-    };
+//         playRound(humanSelection, computerSelection);
+//     };
 
-    if (humanScore === computerScore) {
-        console.log(`You tied with a score of ${humanScore}.`);
-        return;
-    } else if (humanScore > computerScore) {
-        console.log(`You won with a score of ${humanScore} vs ${computerScore}.`);
-        return;
-    } else {
-        console.log(`You lost with a score of ${humanScore} vs ${computerScore}.`)
-    }
-}
+//     if (humanScore === computerScore) {
+//         console.log(`You tied with a score of ${humanScore}.`);
+//         return;
+//     } else if (humanScore > computerScore) {
+//         console.log(`You won with a score of ${humanScore} vs ${computerScore}.`);
+//         return;
+//     } else {
+//         console.log(`You lost with a score of ${humanScore} vs ${computerScore}.`)
+//     }
+// }
 
 playGame(3);
