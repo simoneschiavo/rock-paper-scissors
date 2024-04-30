@@ -67,4 +67,13 @@ function playRound(humanChoice, computerChoice) {
 //     }
 // }
 
-playGame(3);
+// playGame(3);
+
+const playButtons = document.querySelectorAll("button");
+
+playButtons.forEach((playButton) => {
+    playButton.addEventListener("click", function (e) {
+        const humanChoice = e.target.className;
+        playRound(humanChoice, getComputerChoice());
+    });
+});
