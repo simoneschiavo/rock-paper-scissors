@@ -26,6 +26,7 @@ let computerScore = 0;
 let humanScore = 0;
 
 // Add computer and human score to the UI
+const container = document.querySelector(".container");
 const humanScoreCont = document.querySelector(".humanScoreCont");
 const computerScoreCont = document.querySelector(".computerScoreCont");
 const humanScoreBlock = document.querySelector(".humanScore");
@@ -34,30 +35,32 @@ const computerScoreBlock = document.querySelector(".computerScore");
 humanScoreBlock.textContent = `${humanScore}`;
 computerScoreBlock.textContent = `${computerScore}`;
 
+const computerWon = document.createElement("span");
+const humanWon = document.createElement("span");
+
+computerWon.textContent = " Computer won this game!";
+humanWon.textContent = " You won this game!";
+
+const resultsList = document.querySelector(".container > ul");
+const resultItem = document.createElement("li");
+
 // Function to check for winners
 function checkWinner() {
-    const computerWon = document.createElement("span");
-    const humanWon = document.createElement("span");
-
-    computerWon.textContent = " Computer won this game!";
-    humanWon.textContent = " You won this game!";
-
     if (humanScore === 5) {
         humanScoreCont.appendChild(humanWon);
         disablePlayButtons();
+        container.appendChild(newGameButton);
     };
 
     if (computerScore === 5) {
         computerScoreCont.appendChild(computerWon);
         disablePlayButtons();
+        container.appendChild(newGameButton);
     }; 
 }
 
 // Play one round
 function playRound(humanChoice, computerChoice) {
-    const resultsList = document.querySelector(".container > ul");
-    const resultItem = document.createElement("li");
-
     if (humanChoice === computerChoice) {
         resultItem.textContent = `No winners, you both selected ${humanChoice}`;
         resultsList.appendChild(resultItem);
@@ -85,28 +88,6 @@ function playRound(humanChoice, computerChoice) {
     return;
 }
 
-// Play a game of n rounds
-// function playGame(rounds = 5) {
-//     for (i = 0; i <= (rounds -1); i++) {
-//         const humanSelection = getHumanChoice();
-//         const computerSelection = getComputerChoice();
-
-//         playRound(humanSelection, computerSelection);
-//     };
-
-//     if (humanScore === computerScore) {
-//         console.log(`You tied with a score of ${humanScore}.`);
-//         return;
-//     } else if (humanScore > computerScore) {
-//         console.log(`You won with a score of ${humanScore} vs ${computerScore}.`);
-//         return;
-//     } else {
-//         console.log(`You lost with a score of ${humanScore} vs ${computerScore}.`)
-//     }
-// }
-
-// playGame(3);
-
 const playButtons = document.querySelectorAll("button");
 
 playButtons.forEach((playButton) => {
@@ -122,3 +103,27 @@ function disablePlayButtons() {
       playButton.disabled = true;
     });
 }
+
+// Enable playButtons
+function enablePlayButtons() {
+    playButtons.forEach((playButton) => {
+        playButton.disabled = false;
+    })
+}
+
+// Play new game
+const newGameButton = document.createElement("button");
+newGameButton.textContent = "Play another round";
+
+function playNewGame() {
+    newGameButton.remove();
+    enablePlayButtons();
+    humanScore > computerScore ? humanWon.remove() : computerWon.remove();
+    resultItem.remove();
+    humanScore = 0;
+    humanScoreBlock.textContent = `${humanScore}`;
+    computerScore = 0;
+    computerScoreBlock.textContent = `${computerScore}`;
+}
+
+newGameButton.addEventListener("click", playNewGame);
