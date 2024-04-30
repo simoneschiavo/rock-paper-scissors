@@ -26,11 +26,32 @@ let computerScore = 0;
 let humanScore = 0;
 
 // Add computer and human score to the UI
+const humanScoreCont = document.querySelector(".humanScoreCont");
+const computerScoreCont = document.querySelector(".computerScoreCont");
 const humanScoreBlock = document.querySelector(".humanScore");
 const computerScoreBlock = document.querySelector(".computerScore");
 
 humanScoreBlock.textContent = `${humanScore}`;
 computerScoreBlock.textContent = `${computerScore}`;
+
+// Function to check for winners
+function checkWinner() {
+    const computerWon = document.createElement("span");
+    const humanWon = document.createElement("span");
+
+    computerWon.textContent = " Computer won this game!";
+    humanWon.textContent = " You won this game!";
+
+    if (humanScore === 5) {
+        humanScoreCont.appendChild(humanWon);
+        disablePlayButtons();
+    };
+
+    if (computerScore === 5) {
+        computerScoreCont.appendChild(computerWon);
+        disablePlayButtons();
+    }; 
+}
 
 // Play one round
 function playRound(humanChoice, computerChoice) {
@@ -52,6 +73,7 @@ function playRound(humanChoice, computerChoice) {
         humanScore++;
         humanScoreBlock.textContent = `${humanScore}`;
         resultsList.appendChild(resultItem);
+        checkWinner();
         return;
     }
 
@@ -59,6 +81,7 @@ function playRound(humanChoice, computerChoice) {
     computerScore++;
     computerScoreBlock.textContent = `${computerScore}`;
     resultsList.appendChild(resultItem);
+    checkWinner();
     return;
 }
 
@@ -92,3 +115,10 @@ playButtons.forEach((playButton) => {
         playRound(humanChoice, getComputerChoice());
     });
 });
+
+// Disable playButtons
+function disablePlayButtons() {
+    playButtons.forEach((playButton) => {
+      playButton.disabled = true;
+    });
+}
