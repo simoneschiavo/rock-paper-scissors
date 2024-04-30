@@ -25,6 +25,13 @@ function getHumanChoice() {
 let computerScore = 0;
 let humanScore = 0;
 
+// Add computer and human score to the UI
+const humanScoreBlock = document.querySelector(".humanScore");
+const computerScoreBlock = document.querySelector(".computerScore");
+
+humanScoreBlock.textContent = `${humanScore}`;
+computerScoreBlock.textContent = `${computerScore}`;
+
 // Play one round
 function playRound(humanChoice, computerChoice) {
     const resultsList = document.querySelector(".container > ul");
@@ -43,12 +50,14 @@ function playRound(humanChoice, computerChoice) {
     ) {
         resultItem.textContent = `You win! ${humanChoice} beats ${computerChoice}!`;
         humanScore++;
+        humanScoreBlock.textContent = `${humanScore}`;
         resultsList.appendChild(resultItem);
         return;
     }
 
     resultItem.textContent = `You lost! ${humanChoice} loses against ${computerChoice}!`;
     computerScore++;
+    computerScoreBlock.textContent = `${computerScore}`;
     resultsList.appendChild(resultItem);
     return;
 }
