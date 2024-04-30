@@ -27,8 +27,12 @@ let humanScore = 0;
 
 // Play one round
 function playRound(humanChoice, computerChoice) {
+    const resultsList = document.querySelector(".container > ul");
+    const resultItem = document.createElement("li");
+
     if (humanChoice === computerChoice) {
-        console.log(`No winners, you both selected ${humanChoice}`);
+        resultItem.textContent = `No winners, you both selected ${humanChoice}`;
+        resultsList.appendChild(resultItem);
         return;
     }
 
@@ -37,13 +41,15 @@ function playRound(humanChoice, computerChoice) {
         (humanChoice === 'paper' && computerChoice === 'rock') ||
         (humanChoice === 'scissors' && computerChoice === 'paper')
     ) {
-        console.log(`You win! ${humanChoice} beats ${computerChoice}!`);
+        resultItem.textContent = `You win! ${humanChoice} beats ${computerChoice}!`;
         humanScore++;
+        resultsList.appendChild(resultItem);
         return;
     }
 
-    console.log(`You lost! ${humanChoice} loses against ${computerChoice}!`);
+    resultItem.textContent = `You lost! ${humanChoice} loses against ${computerChoice}!`;
     computerScore++;
+    resultsList.appendChild(resultItem);
     return;
 }
 
